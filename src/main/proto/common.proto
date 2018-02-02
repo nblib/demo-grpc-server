@@ -1,0 +1,12 @@
+syntax = "proto3"; // 使用语言版本,这里指定使用protobuf3
+
+option java_multiple_files = false; //是否将定义的message,enum等生成一个独立的外部类,如果true,则每个message,enum生成一个class文件,否则,message,enum会统一作为内部类包含在HelloProto类中
+option java_package = "demo.hewe.io.common"; //定义生成的java类所在的包
+option java_outer_classname = "CommonProto"; //定义这个.proto文件生成的类的名称
+
+package common; //定义这个.proto文件的作用域,类似java的包的作用,在别的.proto文件引用这个文件中的message时,通过包名.message引用.
+
+//空消息,当不需要参数或返回值时,使用这个message
+message Empty {
+
+}

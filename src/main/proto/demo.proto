@@ -1,0 +1,33 @@
+syntax = "proto3"; // 使用语言版本,这里指定使用protobuf3
+
+option java_multiple_files = false; //是否将定义的message,enum等生成一个独立的外部类,如果true,则每个message,enum生成一个class文件,否则,message,enum会统一作为内部类包含在HelloProto类中
+option java_package = "demo.hewe.io.demo"; //定义生成的java类所在的包
+option java_outer_classname = "DemooProto"; //定义这个.proto文件生成的类的名称
+
+package demo; //定义这个.proto文件的作用域,类似java的包的作用,在别的.proto文件引用这个文件中的message时,通过包名.message引用.
+
+//导入别的proto文件定义的message
+import "common.proto";
+
+//示例 list和map
+
+message CheckIps {
+    string name = 1;
+    repeated string ips = 2; //通过修饰符 repeated,表示这个字段的值为0或多个
+}
+message CheckResult {
+    map<string, bool> results = 1; //map类型key必须为string或int类型(除了floating和bytes的任意标量类型都是可以的)
+}
+
+//示例 oneof
+message ContectInfo {
+    oneof phone {
+        string cell = 1;
+        string tel = 2;
+    }
+}
+
+service DemoService {
+    rpc checkIfBlack (CheckIps) returns (CheckResult);
+    rpc getContectInfo (common.Empty) returns (ContectInfo);
+}
