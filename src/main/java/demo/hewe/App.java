@@ -2,6 +2,7 @@ package demo.hewe;
 
 import demo.hewe.Services.DemoService;
 import demo.hewe.Services.HelloService;
+import demo.hewe.Services.JiheServiceImpl;
 import demo.hewe.Services.SampleService;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
@@ -21,6 +22,7 @@ public class App {
                 .addService(new HelloService())
                 .addService(new DemoService())
                 .addService(new SampleService())
+                .addService(new JiheServiceImpl())
                 .build()
                 .start();
 

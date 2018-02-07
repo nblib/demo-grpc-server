@@ -27,6 +27,7 @@ public class HelloService extends HelloSerivceGrpc.HelloSerivceImplBase {
                 .setInfo(info)//
                 .setReceiveTime(LocalDateTime.now().toString())//
                 .build();
+
         //传递返回的message
         responseObserver.onNext(reply);
         //如果服务端遇到内部错误,或者客户端参数用错误等等,使用这个方法结束处理,以后的方法不会被执行,此次请求也会断开.
